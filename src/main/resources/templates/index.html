@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang chu</title>
+</head>
+<body>
+<h1>Them san pham</h1>
+<form action="/add" method="POST" th:object="${sp}">
+    Ten san pham: <input type="text" th:field="*{tensp}"><br/>
+    Don gia: <input type="number" th:field="*{dongia}"><br/>
+    So luong: <input type="number" th:field="*{soluong}"><br/>
+    The loai: <input type="number" th:field="*{matl}"><br/>
+    <button>Them</button>
+</form>
+<hr/>
+<h1>Danh sach san pham</h1>
+<table border="1">
+    <tr>
+        <th>#</th>
+        <th>Ma san pham</th>
+        <th>Ten san pham</th>
+        <th>Don gia</th>
+        <th>So luong</th>
+        <th>Ma the loai</th>
+        <th>Ngay mua</th>
+    </tr>
+    <tr th:each="sp, state : ${listSP}">
+        <td th:text="${state.count}"></td>
+        <td th:text="${sp.masp}"></td>
+        <td th:text="${sp.tensp}"></td>
+        <td th:text="${'$'+ sp.dongia}"></td>
+        <td th:text="${sp.soluong}"></td>
+        <td th:text="${sp.matl}"></td>
+        <td th:text="${sp.ngaymua}"></td>
+    </tr>
+</table>
+<hr/>
+<h1 th:text="'San pham ban nhieu nhat trong ngay ' + ${spMax.tensp}"></h1>
+</body>
+</html>
